@@ -8,13 +8,15 @@ public class UsersDB {
 
     List<User> userList = new ArrayList<>();
 
-    public void addUser(String login, String password) {
+    public void addUser(String login, String password, SessionObject sessionObject) {
         //used for creating new user
         if (getUserByLogin(login).isEmpty()) {
             userList.add(new User(login, password));
-        } else {
-            throw new UserExistsException();
+            sessionObject.setUser(getUserByLogin(login).get());
         }
+//        else {
+//            throw new UserExistsException();
+//        }
     }
 
     public Optional<User> getUserByLogin(String login) {

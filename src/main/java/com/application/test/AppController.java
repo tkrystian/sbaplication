@@ -19,7 +19,7 @@ public class AppController{
     }
 
     @PostMapping("/")
-    public String indexSubmit(User user, Model model) {
+    public String loginPage(User user, Model model) {
         usersDB.validateUser(user.getLogin(), user.getPassword(), sessionObject);
         if (sessionObject.isLogged()) {
             model.addAttribute("sessionObject", sessionObject);
@@ -40,5 +40,22 @@ public class AppController{
     public String logout(User user){
         sessionObject.setUser(null);
         return "login";
+    }
+
+    @GetMapping("/register")
+    public String showRegisterPage(User user){
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String registerPage(User user, Model model) {
+        usersDB.addUser(user.getLogin(), user.getPassword(), sessionObject);
+        if (sessionObject.isLogged()) {
+            model.addAttribute("sessionObject", sessionObject);
+        } else {
+            model.addAttribute("error", "Login already exists.");
+            return "register";
+        }
+        return "main";
     }
 }
