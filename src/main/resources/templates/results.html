@@ -5,6 +5,13 @@
 </head>
 <meta charset="UTF-8"/>
 <body>
-<div>Logged as: <strong th:text="${login}">Test</strong></div>
+<div>
+    Logged as: <strong th:text="${loggedUser}">Test</strong>
+    <form action="/logout" method="get">
+        <button>Logout</button>
+    </form>
+
+</div>
+
 </body>
 </html>

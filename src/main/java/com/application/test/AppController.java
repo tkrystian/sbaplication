@@ -1,10 +1,8 @@
 package com.application.test;
 
 import jakarta.annotation.Resource;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -45,19 +43,20 @@ public class AppController implements WebMvcConfigurer {
     }
 
     @PostMapping("/")
-    public String indexSubmit(@Valid User user, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "form";
-        }
-
+    public String indexSubmit(User user, Model model) {
         usersDB.validateUser(user.getLogin(), user.getPassword(), sessionObject);
-
         if (sessionObject.isLogged()) {
-            model.addAttribute("login", sessionObject.getUser().getLogin());
+            model.addAttribute("loggedUser", sessionObject.getUser().getLogin());
         } else {
             model.addAttribute("error", "Wrong login or password.");
             return "form";
         }
         return "results";
+    }
+
+    @GetMapping("/logout")
+    public String logout(User user){
+        sessionObject.setUser(null);
+        return "form";
     }
 }

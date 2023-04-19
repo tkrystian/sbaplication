@@ -1,16 +1,9 @@
 package com.application.test;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
 public class User {
 
     private int id;
-    @NotNull
-    @Size(min=2, max=30)
     private String login;
-    @NotNull
-    @Size(min=2, max=30)
     private String password;
 
     public String getLogin() {
