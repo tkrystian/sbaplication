@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" href="invoice.css">
+    <title>Dodaj fakturę</title>
+</head>
+<body>
+
+<table>
+  <form action="#" th:action="@{/invoice-add}" th:object="${invoice}" method="post">
+    <tr>
+      <td>ID:</td>
+      <td><input type="number" th:field="*{id}"/>
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>NIP:</td>
+      <td><input type="number" th:field="*{nip}"/>
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('nip')}" th:errors="*{nip}"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>Numer faktury:</td>
+      <td><input type="text" th:field="*{invoiceNumber}"/>
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('invoiceNumber')}" th:errors="*{invoiceNumber}"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>Wartość netto:</td>
+      <td><input type="number" step="0.01" th:field="*{netValue}"/>
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('netValue')}" th:errors="*{netValue}"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>Data wystawienia:</td>
+      <td><input type="date" th:field="*{dateOfInvoice}"/>
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('dateOfInvoice')}" th:errors="*{dateOfInvoice}"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>Termin płatności:</td>
+      <td><input type="date" th:field="*{dateOfPayment}"/>
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('dateOfPayment')}" th:errors="*{dateOfPayment}"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button type="submit">Dodaj fakturę</button>
+      </td>
+  </form>
+</table>
+<p th:text="${invoiceExists}"></p>
+
+
+</body>
+</html>

@@ -1,14 +1,23 @@
 package com.application.test;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Invoice {
+    @NotNull(message = "Pole nie może być puste")
     private int id;
+    @NotNull(message = "Pole nie może być puste")
     private int nip;
+    @NotEmpty(message = "Pole nie może być puste")
     private String invoiceNumber;
+    @NotNull(message = "Pole nie może być puste")
     private BigDecimal netValue;
+    @NotNull(message = "Pole nie może być puste")
     private LocalDate dateOfInvoice;
+    @NotNull(message = "Pole nie może być puste")
     private LocalDate dateOfPayment;
 
     public Invoice() {

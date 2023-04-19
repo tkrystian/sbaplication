@@ -21,6 +21,8 @@ public class InvoiceDB {
     public void addInvoice(Invoice invoice){
         if(getInvoiceByInvoiceNumber(invoice.getNip(), invoice.getInvoiceNumber()).isEmpty()){
             invoiceList.add(invoice);
+        }else {
+            throw new InvoiceExistsException();
         }
     }
 
