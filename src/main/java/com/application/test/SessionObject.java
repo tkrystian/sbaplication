@@ -1,7 +1,9 @@
 package com.application.test;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+@Component
 @SessionScope
 public class SessionObject {
     private User user = null;

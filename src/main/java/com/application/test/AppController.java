@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.Optional;
-
 @Controller
 public class AppController implements WebMvcConfigurer {
 
@@ -45,22 +43,19 @@ public class AppController implements WebMvcConfigurer {
     public String showForm(User user) {
         return "form";
     }
+
     @PostMapping("/")
-    public String indexSubmit(@Valid User user, BindingResult bindingResult, Model model){
-      if(bindingResult.hasErrors()){
+    public String indexSubmit(@Valid User user, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             return "form";
         }
-        try {
-            Optional<User> loggedUser = usersDB.validateUser(user.getLogin(), user.getPassword());
-            if(loggedUser.isEmpty()){
-                model.addAttribute("error", "Wrong password.");
-                return "form";
-            }else {
-                sessionObject.setUser(loggedUser.get());
-                model.addAttribute("login", sessionObject.getUser().getLogin());
-            }
-        } catch (EmptyUserException e){
-            model.addAttribute("error", "Wrong login.");
+
+        usersDB.validateUser(user.getLogin(), user.getPassword(), sessionObject);
+
+        if (sessionObject.isLogged()) {
+            model.addAttribute("login", sessionObject.getUser().getLogin());
+        } else {
+            model.addAttribute("error", "Wrong login or password.");
             return "form";
         }
         return "results";

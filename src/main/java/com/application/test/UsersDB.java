@@ -26,16 +26,16 @@ public class UsersDB {
         return Optional.empty();
     }
 
-    public Optional<User> validateUser(String login, String password) {
+    public void validateUser(String login, String password, SessionObject sessionObject) {
         //used for logging in
         Optional<User> validatedUser = getUserByLogin(login);
-        if (validatedUser.isEmpty()) {
-            throw new EmptyUserException();
+        if (validatedUser.isPresent()) {
+            {
+                if (validatedUser.get().getPassword().equals(password)) {
+                    sessionObject.setUser(validatedUser.get());
+                }
+            }
         }
-        if (validatedUser.get().getPassword().equals(password)) {
-            return validatedUser;
-        }
-        return Optional.empty();
     }
 
     public UsersDB(List<User> userList) {
