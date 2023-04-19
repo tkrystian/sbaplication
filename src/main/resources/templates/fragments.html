@@ -10,9 +10,9 @@
 
   <table style="width:100%">
     <tr>
-      <a href = "/main"><th class = "links">Strona główna</th></a>
-      <a href = "/main"><th class = "links">Strona 2</th></a>
-      <a href = "/main"><th class = "links">Strona 3</th></a>
+      <th class = "links"><a href = "/main">Strona główna</a></th>
+      <th class = "links"><a href = "/invoices">Faktury</a></th>
+      <th class = "links"><a href = "/main">Strona 3</a></th>
       <th class = "login" th:if="${sessionObject.isLogged()}">
         <strong th:text="${sessionObject.getUser().getLogin()}">Test</strong>
         <form action="/logout" method="get">

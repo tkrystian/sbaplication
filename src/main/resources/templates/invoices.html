@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="invoice.css">
+    <link rel="stylesheet" href="index.css">
+    <title>Faktury</title>
+</head>
+<body>
+
+<div>
+    <div th:replace="~{fragments.html :: menu}"></div>
+</div>
+
+<div id = "invoiceDiv">
+    <table id = "invoices">
+        <tr>
+            <td>ID</td>
+            <td>NIP</td>
+            <td>Numer faktury</td>
+            <td>Wartość faktury</td>
+            <td>Data faktury</td>
+            <td>Data płatności</td>
+        </tr>
+        <tr th:each="invoice: ${invoiceList}">
+            <td th:text="${invoice.id}" />
+            <td th:text="${invoice.nip}" />
+            <td th:text="${invoice.invoiceNumber}" />
+            <td th:text="${invoice.netValue}" />
+            <td th:text="${invoice.dateOfInvoice}" />
+            <td th:text="${invoice.dateOfPayment}" />
+        </tr>
+    </table>
+</div>
+</body>
+</html>

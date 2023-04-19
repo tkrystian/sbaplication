@@ -1,6 +1,7 @@
 package com.application.test;
 
 import jakarta.annotation.Resource;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ public class AppController{
 
     @PostMapping("/")
     public String loginPage(User user, Model model) {
-        usersDB.validateUser(user.getLogin(), user.getPassword(), sessionObject);
+        usersDB.validateUser(user.getLogin(), DigestUtils.md5Hex(user.getPassword()), sessionObject);
         if (sessionObject.isLogged()) {
             model.addAttribute("sessionObject", sessionObject);
         } else {
@@ -49,7 +50,7 @@ public class AppController{
 
     @PostMapping("/register")
     public String registerPage(User user, Model model) {
-        usersDB.addUser(user.getLogin(), user.getPassword(), sessionObject);
+        usersDB.addUser(user.getLogin(), DigestUtils.md5Hex(user.getPassword()), sessionObject);
         if (sessionObject.isLogged()) {
             model.addAttribute("sessionObject", sessionObject);
         } else {

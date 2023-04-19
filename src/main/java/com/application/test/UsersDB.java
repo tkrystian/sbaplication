@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class UsersDB {
 
-    List<User> userList = new ArrayList<>();
+    private List<User> userList = new ArrayList<>();
 
     public void addUser(String login, String password, SessionObject sessionObject) {
         //used for creating new user
@@ -45,7 +45,7 @@ public class UsersDB {
     }
 
     public UsersDB() {
-        userList.add(new User("admin", "admin"));
-        userList.add(new User("admin2", "admin2"));
+        userList.add(new User("admin", "21232f297a57a5a743894a0e4a801fc3"));
+        userList.add(new User("admin2", "c84258e9c39059a89ab77d846ddab909"));
     }
 }

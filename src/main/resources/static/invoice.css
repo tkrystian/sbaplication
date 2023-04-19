@@ -1,0 +1,13 @@
+table, th, td {
+  border: 1px solid;
+}
+
+#invoices{
+    width: max-content;
+    height: max-content;
+    margin: auto;
+}
+
+#invoiceDiv{
+    padding: 20px;
+}
