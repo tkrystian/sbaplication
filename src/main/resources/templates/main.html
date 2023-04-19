@@ -6,11 +6,7 @@
 <meta charset="UTF-8"/>
 <body>
 <div>
-    Logged as: <strong th:text="${loggedUser}">Test</strong>
-    <form action="/logout" method="get">
-        <button>Logout</button>
-    </form>
-
+    <div th:replace="~{fragments.html :: menu}"></div>
 </div>
 
 </body>

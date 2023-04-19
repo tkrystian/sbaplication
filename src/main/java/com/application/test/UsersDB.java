@@ -44,5 +44,6 @@ public class UsersDB {
 
     public UsersDB() {
         userList.add(new User("admin", "admin"));
+        userList.add(new User("admin2", "admin2"));
     }
 }

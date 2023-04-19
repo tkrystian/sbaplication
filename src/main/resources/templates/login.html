@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" href="index.css">
+    <title></title>
+</head>
+<body>
+<div id="menu">
+
+    <table>
+        <form action="#" th:action="@{/}" th:object="${user}" method="post">
+            <tr>
+                <td>Login:</td>
+                <td><input type="text" th:field="*{login}"/></td>
+                <td th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Login Error</td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" th:field="*{password}"/></td>
+                <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Zaloguj</button>
+                </td>
+        </form>
+        <td>
+            <form action="/register" method="get">
+                <button>Zarejestruj</button>
+            </form>
+        </td>
+        </tr>
+        <p th:text="${error}">Test</p>
+    </table>
+
+
+</div>
+</body>
+</html>
